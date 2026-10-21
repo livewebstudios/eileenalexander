@@ -1,0 +1,49 @@
+{
+  "currency": "usd",
+  "products": [
+    {
+      "id": "individual-sessions",
+      "name": "Individual Sessions",
+      "note": "Reiki, Life Coaching, Grief Coaching, Yoga, or Meditation. Your choice, or mix them.",
+      "options": [
+        {"attr": "Service Type", "values": ["Reiki", "Life Coaching", "Grief Coaching", "Yoga", "Meditation"]},
+        {"attr": "Package", "values": ["1-Hour Session", "3-Session Package", "10-Session Package"]}
+      ],
+      "variants": [
+        {"combo": ["*", "1-Hour Session"], "price": 12000},
+        {"combo": ["*", "3-Session Package"], "price": 31500},
+        {"combo": ["*", "10-Session Package"], "price": 97500}
+      ],
+      "terms": "3-packs valid 6 months; 10-packs valid 1 year. Gift certificates available by phone/email."
+    },
+    {
+      "id": "reiki-1-2",
+      "name": "Reiki 1 & 2 Training",
+      "options": [
+        {"attr": "Reiki Level", "values": ["Reiki 1", "Reiki 2"]},
+        {"attr": "Format", "values": ["Group Training", "Private Training"]}
+      ],
+      "variants": [
+        {"combo": ["Reiki 1", "Group Training"], "price": 23000},
+        {"combo": ["Reiki 2", "Group Training"], "price": 28000, "schedule": "Sunday, November 1, 2026 at Naturally Yoga, Saddle River"},
+        {"combo": ["Reiki 1", "Private Training"], "price": 33000},
+        {"combo": ["Reiki 2", "Private Training"], "price": 38000}
+      ]
+    },
+    {
+      "id": "reiki-master",
+      "name": "Reiki Master Training",
+      "options": [{"attr": "Format", "values": ["Group Training", "Private Training"]}],
+      "variants": [
+        {"combo": ["Group Training"], "price": 56000, "schedule": "Sunday, December 6, 2026"},
+        {"combo": ["Private Training"], "price": 66000}
+      ]
+    },
+    {
+      "id": "chakra-series",
+      "name": "Private Chakra Session Series",
+      "price": 31500,
+      "note": "Series of 3 private one-hour sessions."
+    }
+  ]
+}

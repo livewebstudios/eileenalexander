@@ -1,0 +1,15 @@
+{
+  "name": "eileenalexander",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Eileen Alexander Therapeutic Services | static site + Stripe Checkout function (Live Web Studios)",
+  "scripts": {
+    "test": "node tests/checkout.test.js"
+  },
+  "dependencies": {
+    "stripe": "^23.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
