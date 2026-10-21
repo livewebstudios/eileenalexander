@@ -209,7 +209,8 @@
   document.querySelectorAll('[data-testimonials]').forEach(function (wrap) {
     var slides = wrap.querySelectorAll('.t-slide');
     var dotsWrap = wrap.querySelector('.t-dots');
-    var current = 0, timer = null;
+    var current = 0, timer = null, paused = false;
+    var pauseBtn = wrap.querySelector('.t-pause');
     if (slides.length < 2) return;
     slides.forEach(function (s, i) {
       var d = document.createElement('button');
@@ -230,12 +231,20 @@
       dots.forEach(function (d, k) { d.setAttribute('aria-current', String(k === current)); });
     }
     function restart() {
-      if (reduceMotion) return;
+      if (reduceMotion || paused) return;
       clearInterval(timer);
       timer = setInterval(function () { go(current + 1); }, 8000);
     }
     wrap.querySelector('.t-prev').addEventListener('click', function () { go(current - 1); restart(); });
     wrap.querySelector('.t-next').addEventListener('click', function () { go(current + 1); restart(); });
+    if (pauseBtn) {
+      pauseBtn.addEventListener('click', function () {
+        paused = !paused;
+        pauseBtn.setAttribute('aria-pressed', String(paused));
+        pauseBtn.setAttribute('aria-label', paused ? 'Play testimonials' : 'Pause testimonials');
+        if (paused) clearInterval(timer); else restart();
+      });
+    }
     wrap.addEventListener('mouseenter', function () { clearInterval(timer); });
     wrap.addEventListener('mouseleave', restart);
     wrap.addEventListener('focusin', function () { clearInterval(timer); });

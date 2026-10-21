@@ -18,6 +18,11 @@
   --ink: #5b4747;
   --ink-strong: #3b2626;
   --white: #ffffff;
+  --petal: #fff4f2;
+
+  /* Chakra accents (chakra page only) */
+  --chakra-1: #d9443a; --chakra-2: #ec8a3c; --chakra-3: #f2c94c; --chakra-4: #5fb36b;
+  --chakra-5: #4f9fd8; --chakra-6: #6a5acd; --chakra-7: #b77ad8;
 
   /* Functional */
   --kicker: #a82626;
@@ -389,7 +394,7 @@ h1 em, h2 em, h3 em { font-style: italic; color: inherit; }
   will-change: transform;
   --bf-stroke: var(--burgundy-deep); --bf-fill: rgba(224, 181, 181, 0.55); --bf-acc: var(--red); --bf-acc2: var(--rose-mid);
 }
-.bfly--light { --bf-stroke: #fff4f2; --bf-fill: rgba(224, 181, 181, 0.35); --bf-acc: var(--rose); --bf-acc2: #ffffff; }
+.bfly--light { --bf-stroke: var(--petal); --bf-fill: rgba(224, 181, 181, 0.35); --bf-acc: var(--rose); --bf-acc2: var(--white); }
 .bfly svg { display: block; width: 100%; height: auto; overflow: visible; }
 .bfly .wing { transform-box: fill-box; animation: flap var(--f, 0.75s) ease-in-out var(--fd, 0s) infinite alternate; }
 .bfly .wing-l { transform-origin: 100% 55%; }
@@ -450,7 +455,7 @@ h1 em, h2 em, h3 em { font-style: italic; color: inherit; }
 .t-card {
   display: flex; flex-direction: column; background: var(--white); border-radius: var(--radius); overflow: hidden;
   box-shadow: var(--shadow-sm); border: 1px solid rgba(224, 181, 181, 0.45);
-  transition: transform 250ms var(--ease), box-shadow 250ms var(--ease);
+  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
 }
 .t-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
 .t-card__img { aspect-ratio: 4 / 3; overflow: hidden; background: var(--rose-light); }
@@ -603,7 +608,7 @@ h1 em, h2 em, h3 em { font-style: italic; color: inherit; }
 /* --------------------------------------------------------------------------
    Level / event cards
    -------------------------------------------------------------------------- */
-.level { background: var(--white); border-radius: var(--radius); padding: clamp(26px, 4vw, 38px); box-shadow: var(--shadow-sm); border: 1px solid rgba(224, 181, 181, 0.5); display: flex; flex-direction: column; transition: transform 250ms var(--ease), box-shadow 250ms var(--ease); }
+.level { background: var(--white); border-radius: var(--radius); padding: clamp(26px, 4vw, 38px); box-shadow: var(--shadow-sm); border: 1px solid rgba(224, 181, 181, 0.5); display: flex; flex-direction: column; transition: transform 200ms var(--ease), box-shadow 200ms var(--ease); }
 .level:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .level__num { font-family: var(--font-display); font-style: italic; font-size: 3rem; line-height: 1; color: var(--rose); margin-bottom: 10px; }
 .level__pre { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--kicker); margin-bottom: 16px; }
@@ -786,7 +791,7 @@ h1 em, h2 em, h3 em { font-style: italic; color: inherit; }
 .footer-badge img { width: 150px; height: 37px; opacity: 1; }
 .footer-credit { font-size: 0.8125rem; color: rgba(255, 255, 255, 0.65); }
 .footer-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
-.footer-credit a:hover, .footer-credit a:focus-visible { color: #fff; }
+.footer-credit a:hover, .footer-credit a:focus-visible { color: var(--white); }
 
 /* --------------------------------------------------------------------------
    404
@@ -844,14 +849,33 @@ h1 em, h2 em, h3 em { font-style: italic; color: inherit; }
 .chakra strong { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--white); line-height: 1.3; }
 .chakra span { font-size: 0.95rem; }
 .chakra__dot { flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 18px var(--c); }
-.chakra--1 { --c: #d9443a; }
-.chakra--2 { --c: #ec8a3c; }
-.chakra--3 { --c: #f2c94c; }
-.chakra--4 { --c: #5fb36b; }
-.chakra--5 { --c: #4f9fd8; }
-.chakra--6 { --c: #6a5acd; }
-.chakra--7 { --c: #b77ad8; }
+.chakra--1 { --c: var(--chakra-1); }
+.chakra--2 { --c: var(--chakra-2); }
+.chakra--3 { --c: var(--chakra-3); }
+.chakra--4 { --c: var(--chakra-4); }
+.chakra--5 { --c: var(--chakra-5); }
+.chakra--6 { --c: var(--chakra-6); }
+.chakra--7 { --c: var(--chakra-7); }
 @media (max-width: 819.98px) {
   .event__date { flex-direction: row; align-items: baseline; gap: 12px; padding: 16px 20px; }
   .event__day { font-size: 2.4rem; }
 }
+.cta-band .cta-area { font-size: 0.9rem; margin-top: -16px; opacity: 0.85; }
+@media (max-width: 999.98px) { .cards--trio { grid-template-columns: 1fr; max-width: 680px; margin-inline: auto; } }
+
+/* Touch targets (44px minimum) */
+.qty--sm { height: 46px; }
+.qty--sm button { width: 44px; }
+.cart-remove { min-height: 44px; padding: 8px 6px; }
+.t-dot { width: 44px; height: 44px; }
+.t-dots { gap: 0; }
+.t-pause {
+  width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.45); background: transparent; color: var(--white);
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background-color 200ms var(--ease), border-color 200ms var(--ease);
+}
+.t-pause:hover { background: rgba(255,255,255,0.12); border-color: var(--white); }
+.t-pause svg { width: 16px; height: 16px; }
+.t-pause .i-play { display: none; }
+.t-pause[aria-pressed="true"] .i-play { display: block; }
+.t-pause[aria-pressed="true"] .i-pause { display: none; }
+@media (prefers-reduced-motion: reduce) { .t-pause { display: none; } }
