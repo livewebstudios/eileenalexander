@@ -743,7 +743,7 @@ h1 em, h2 em, h3 em { font-style: italic; color: inherit; }
 @media (min-width: 760px) { .pay-methods { grid-template-columns: repeat(3, 1fr); } }
 .pay-method { background: var(--white); border-radius: var(--radius); padding: 22px; border: 1px solid rgba(224, 181, 181, 0.6); }
 .pay-method h3 { font-size: 1.25rem; margin-bottom: 6px; }
-.pay-method p { margin: 0; font-size: 0.95rem; }
+.pay-method p, .pay-method address { margin: 0; font-size: 0.95rem; font-style: normal; }
 .pay-method .handle { font-weight: 700; color: var(--burgundy); font-size: 1.05rem; }
 
 /* Toast */

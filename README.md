@@ -150,10 +150,11 @@ Hero images sit under a burgundy gradient overlay. After swapping finals, re-che
 
 ## Open items (owner: Jon)
 
-- [ ] **Stripe keys.** Add `STRIPE_SECRET_KEY` (test) in Netlify env, run every combo end to end, try a promo code, cancel once. Swap to live at launch.
+- [ ] **Stripe keys.** Sandbox key tested locally 2026-10-22 (`build/.env`, gitignored, loaded by `_dev/devserver.js`): all 22 option combos create sessions, a full 4242 payment lands on thank-you with the cart cleared, cancel returns with the cart kept, bad options and client-sent prices are rejected. Still to do: promo code test (none created yet), add the key to Netlify env at deploy, and swap to live once Eileen finishes Stripe activation (business details, bank, SSN last 4). Turn on Stripe receipt emails, since the thank-you page promises one.
 - [ ] **Verify the four previously `null` prices** above with Eileen ($315 3-pack, $330 / $380 Reiki private, $660 Master private). They came straight from the live Woo data, but the handoff marks this as a launch blocker until Jon confirms.
-- [ ] **Check mailing address.** The thank-you page says "Reach out and I'll share the mailing address" (same as the live site). Add the address if Eileen wants it printed.
-- [ ] **Zelle 973-600-4030 and Venmo @Eileen-Alexander-1.** Confirm both are still current.
+- [x] **Check mailing address.** Eileen confirmed 2026-10-21: The Center for Mind Body Balance, 96 East Allendale Road, Saddle River, NJ 07458. Printed on the thank-you page check card.
+- [x] **Zelle 973-600-4030 and Venmo @Eileen-Alexander-1.** Confirmed by Eileen 2026-10-21.
+- [ ] **Wayne office closes Dec 31, 2026.** Lease not renewed. From Jan 1, 2027 the main address is The Center for Mind Body Balance, 96 East Allendale Road, Saddle River, NJ 07458. Swap footer, contact page, FAQ, LocalBusiness schema (address, geo, hasMap) and the Wayne-targeted titles/meta. Confirm whether "Naturally Yoga" (current site wording at that address) is now "The Center for Mind Body Balance".
 - [ ] **Next retreat.** Events page shows "Next retreat coming soon, join the list." When a retreat is set, add a tiered product to `products.json` (e.g. Full Weekend / Saturday / Kirtan Only) and an event card.
 - [ ] **Reiki Master (Dec 6, 2026) location.** The live site doesn't list it. The page says "Location confirmed when you register"; the Event schema uses Naturally Yoga, Saddle River. Fix both if it's elsewhere.
 - [ ] **Facebook.** The live footer's Facebook icon links to `#`. Send the real page URL and it goes in the footer and in schema `sameAs`.
