@@ -44,6 +44,16 @@
       "name": "Private Chakra Session Series",
       "price": 31500,
       "note": "Series of 3 private one-hour sessions."
-    }
+    },
+    {"id": "lakefront-retreat-2027", "name": "New Jersey Lakefront Retreat, May 2027",
+      "note": "With Eileen Alexander & Sheryl Edsall in West Milford, NJ. May 14 to 16, 2027.",
+      "options": [{"attr": "Option", "values": ["Full Weekend", "Full Day Saturday", "Saturday Dinner & Kirtan", "Saturday Kirtan Only"]}],
+      "variants": [
+        {"combo": ["Full Weekend"], "price": 74500, "schedule": "Friday, May 14, 5 pm to Sunday, May 16, 2027, noon, West Milford, NJ"},
+        {"combo": ["Full Day Saturday"], "price": 28900, "schedule": "Saturday, May 15, 2027, 8:30 am to 9 pm, West Milford, NJ"},
+        {"combo": ["Saturday Dinner & Kirtan"], "price": 8000, "schedule": "Saturday, May 15, 2027, 5:30 to 9 pm, West Milford, NJ"},
+        {"combo": ["Saturday Kirtan Only"], "price": 5000, "schedule": "Saturday, May 15, 2027, 7 to 9 pm, West Milford, NJ"}
+      ],
+      "terms": "Full refund up to 45 days before the retreat. After that, refunds only if we can fill your spot."}
   ]
 }

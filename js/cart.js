@@ -279,7 +279,7 @@
       if (r) {
         var q = qtyInput ? clampQty(qtyInput.value) : 1;
         priceEl.innerHTML = money(r.price * q) + (q > 1 ? ' <small>' + q + ' &times; ' + money(r.price) + '</small>' : '');
-        if (schedEl) { schedEl.hidden = !r.schedule; schedEl.textContent = r.schedule ? 'Next group date: ' + r.schedule : ''; }
+        if (schedEl) { schedEl.hidden = !r.schedule; schedEl.textContent = r.schedule ? 'When: ' + r.schedule : ''; }
       } else {
         priceEl.innerHTML = range[0] === range[1] ? money(range[0]) : '<small>From</small>' + money(range[0]);
         if (schedEl) schedEl.hidden = true;
