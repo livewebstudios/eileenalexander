@@ -38,7 +38,8 @@ const call = (method, body) => fn.handler({ httpMethod: method, body: body && JS
   }
   const v = fn._validate({ items: [{ id: 'reiki-1-2', options: ['Reiki 2', 'Group Training'], qty: 2, price: 1 }] });
   assert.strictEqual(v.lineItems[0].price_data.unit_amount, 28000, 'server price wins over client price');
-  assert.ok(/November 1, 2026/.test(v.lineItems[0].price_data.product_data.description));
+  const vm = fn._validate({ items: [{ id: 'reiki-master', options: ['Group Training'], qty: 1 }] });
+  assert.ok(/December 6, 2026/.test(vm.lineItems[0].price_data.product_data.description));
 
   process.env.STRIPE_SECRET_KEY = 'sk_test_fake_key_for_local_test';
   r = await call('POST', { items: [{ id: 'individual-sessions', options: ['Yoga', '10-Session Package'], qty: 1 }] });

@@ -25,7 +25,7 @@
       ],
       "variants": [
         {"combo": ["Reiki 1", "Group Training"], "price": 23000},
-        {"combo": ["Reiki 2", "Group Training"], "price": 28000, "schedule": "Sunday, November 1, 2026 at Naturally Yoga, Saddle River"},
+        {"combo": ["Reiki 2", "Group Training"], "price": 28000},
         {"combo": ["Reiki 1", "Private Training"], "price": 33000},
         {"combo": ["Reiki 2", "Private Training"], "price": 38000}
       ]
@@ -35,7 +35,7 @@
       "name": "Reiki Master Training",
       "options": [{"attr": "Format", "values": ["Group Training", "Private Training"]}],
       "variants": [
-        {"combo": ["Group Training"], "price": 56000, "schedule": "Sunday, December 6, 2026"},
+        {"combo": ["Group Training"], "price": 56000, "schedule": "Sunday, December 6, 2026 at Naturally Yoga, Saddle River"},
         {"combo": ["Private Training"], "price": 66000}
       ]
     },
