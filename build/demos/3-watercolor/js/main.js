@@ -377,6 +377,42 @@ window.EA_BFLY = (function () {
     });
   }
 
+  /* ---------------------------------------------------------------- preview mode
+     Design review only: the shop is laid out but switched off until Eileen picks a
+     design. Capture-phase listeners stop js/cart.js from adding items or opening the
+     drawer, so nothing reaches the cart or the checkout page. Remove this block when
+     the chosen design goes live. */
+  var PREVIEW_MSG = 'Just a preview for now. The shop gets switched on once you pick a design.';
+  var toast = document.createElement('div');
+  toast.className = 'preview-toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  document.body.appendChild(toast);
+  var toastTimer;
+  function previewNote() {
+    clearTimeout(toastTimer);
+    toast.textContent = PREVIEW_MSG;
+    toast.classList.add('is-on');
+    toastTimer = setTimeout(function () { toast.classList.remove('is-on'); }, 4200);
+  }
+  document.addEventListener('submit', function (e) {
+    var form = e.target.closest && e.target.closest('form[data-product]');
+    if (!form) return;
+    e.preventDefault();
+    e.stopPropagation();
+    var msg = form.querySelector('.buy__msg');
+    if (msg) { msg.className = 'buy__msg is-ok'; msg.textContent = PREVIEW_MSG; }
+    previewNote();
+  }, true);
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('[data-cart-open]');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    previewNote();
+  }, true);
+  try { localStorage.removeItem('ea_cart_v1'); } catch (x) { /* storage blocked: nothing to clear */ }
+
   /* ---------------------------------------------------------------- footer year */
   qsa('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();

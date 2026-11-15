@@ -233,6 +233,10 @@ section { position: relative; }
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
 
+/* Preview mode note (design review only, see js/main.js) */
+.preview-toast { position: fixed; left: 50%; bottom: 74px; z-index: 450; width: max-content; max-width: min(92vw, 440px); padding: 14px 22px; border-radius: 14px; background: var(--ink-strong); color: #fff; font: 500 0.92rem/1.45 var(--body); text-align: center; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25); opacity: 0; visibility: hidden; transform: translate(-50%, 16px); transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0s 0.3s; }
+.preview-toast.is-on { opacity: 1; visibility: visible; transform: translate(-50%, 0); transition-delay: 0s; }
+
 /* Logo splash colors: a thin maroon-to-mauve line over the header, maroon for the nav's
    active state, the header button, prices and footer headings. */
 .site-header::before { content: ""; display: block; height: 4px; background: linear-gradient(90deg, var(--brand), var(--mauve) 50%, var(--brand)); }
