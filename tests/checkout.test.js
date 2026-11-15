@@ -3,7 +3,7 @@
    proves validation passes and the request reaches Stripe (which rejects the key). */
 const assert = require('assert');
 const fn = require('../netlify/functions/create-checkout-session.js');
-const catalog = require('../data/products.json');
+const catalog = require('../build/data/products.json');
 
 const call = (method, body) => fn.handler({ httpMethod: method, body: body && JSON.stringify(body), headers: { host: 'localhost:8888' } });
 

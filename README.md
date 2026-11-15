@@ -4,6 +4,14 @@ Eileen Alexander Therapeutic Services. Static HTML/CSS/vanilla JS rebuild of the
 
 Built by Live Web Studios, October 2026.
 
+> **Layout note (November 2026):** the site now lives in `build/` and Netlify publishes that folder
+> (`publish = "build"` in `netlify.toml`). Every site path below is relative to `build/`.
+> `netlify.toml`, `package.json`, `netlify/functions/` and `tests/` stay at the repo root.
+> Planning docs and reference screenshots are in `docs/`.
+>
+> **Design review in progress:** `build/index.html` is a temporary landing page for Eileen that links
+> to three design ideas in `build/demos/`. The previous home page is kept as `build/home-v1.html`.
+
 ---
 
 ## Structure

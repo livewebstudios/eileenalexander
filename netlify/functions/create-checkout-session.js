@@ -2,11 +2,11 @@
  * Netlify Function: create-checkout-session
  * POST { items: [{ id, options: [..], qty }] }  ->  { url }  (Stripe-hosted Checkout)
  *
- * Every price is looked up here from data/products.json. Client-sent prices are ignored
+ * Every price is looked up here from build/data/products.json. Client-sent prices are ignored
  * on purpose. Keys come from Netlify env: STRIPE_SECRET_KEY (sk_test_... until launch).
  */
 const Stripe = require('stripe');
-const catalog = require('../../data/products.json');
+const catalog = require('../../build/data/products.json');
 
 const MAX_LINES = 20;
 const MAX_QTY = 20;

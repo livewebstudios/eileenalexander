@@ -1,38 +1,14 @@
 # Eileen Alexander | Netlify config (Live Web Studios)
 [build]
-  publish = "."
+  # The site lives in build/. Docs, tests and the function source stay outside it.
+  publish = "build"
   # No build step. Netlify installs package.json deps automatically for the function.
   command = "echo static site"
 
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-  included_files = ["data/products.json"]
-
-# Keep the repo plumbing off the public site
-[[redirects]]
-  from = "/netlify/*"
-  to = "/404.html"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/tests/*"
-  to = "/404.html"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/package.json"
-  to = "/404.html"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/README.md"
-  to = "/404.html"
-  status = 404
-  force = true
+  included_files = ["build/data/products.json"]
 
 [[headers]]
   for = "/*"
