@@ -390,6 +390,62 @@ window.EA_BFLY = (function () {
     var rt;
     window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(layoutFliers, 200); });
 
+    // Gentle company for the cursor. A butterfly near the pointer relaxes: it glides slower and
+    // its wings beat slower, the way one settles on a finger. It never moves off its loop, never
+    // flees and never leans, so nothing jitters. Rates change in small steps through
+    // updatePlaybackRate so the browser keeps every animation smooth.
+    // Mouse and trackpad only; touch screens and reduced motion keep the plain animation.
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (finePointer && !reduceMotion && document.documentElement.getAnimations) {
+      var friends = [];
+      fliers.forEach(function (it) { friends.push({ el: it.fly.firstChild, move: it.fly, t: 0 }); });
+      qsa('.bf--rest').forEach(function (el) { friends.push({ el: el, move: null, t: 0 }); });
+      var px = -1e4, py = -1e4, raf = 0, inside = false;
+      var hook = function (f) {
+        if (f.calm) return;
+        // [animation, how slow it gets when the cursor is right there]
+        f.calm = [];
+        if (f.move) f.move.getAnimations().forEach(function (a) { f.calm.push([a, 0.3]); });
+        f.el.getAnimations().forEach(function (a) { f.calm.push([a, 0.55]); });
+        qsa('.bf-w', f.el).forEach(function (w) { w.getAnimations().forEach(function (a) { f.calm.push([a, 0.5]); }); });
+      };
+      var setRate = function (a, rate) {
+        if (a._eaRate === rate) return;
+        a._eaRate = rate;
+        if (a.updatePlaybackRate) a.updatePlaybackRate(rate); else a.playbackRate = rate;
+      };
+      var frame = function () {
+        raf = 0;
+        var busy = inside;
+        // Read every position first, then write, so the page lays out once per frame.
+        var goals = friends.map(function (f) {
+          var r = (f.move || f.el).getBoundingClientRect();
+          if (!r.width || r.bottom < 0 || r.top > window.innerHeight) return null;
+          var dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height / 2);
+          var d = Math.sqrt(dx * dx + dy * dy), reach = r.width * 0.6 + 80;
+          return d < reach ? Math.min(1, 1.4 - (d / reach)) : 0;
+        });
+        friends.forEach(function (f, i) {
+          var goal = goals[i] || 0;
+          if (goals[i] === null && !f.t) return;
+          hook(f);
+          f.t += (goal - f.t) * 0.04;
+          if (Math.abs(goal - f.t) < 0.01) f.t = goal; else busy = true;
+          f.calm.forEach(function (c) {
+            setRate(c[0], Math.round((1 - (1 - c[1]) * f.t) * 20) / 20);
+          });
+        });
+        if (busy) raf = requestAnimationFrame(frame);
+      };
+      var wake = function () { if (!raf) raf = requestAnimationFrame(frame); };
+      document.addEventListener('pointermove', function (e) {
+        if (e.pointerType && e.pointerType !== 'mouse') return;
+        px = e.clientX; py = e.clientY; inside = true; wake();
+      }, { passive: true });
+      document.documentElement.addEventListener('pointerleave', function () { px = py = -1e4; inside = false; wake(); });
+      window.addEventListener('blur', function () { px = py = -1e4; inside = false; wake(); });
+    }
+
     // Pause anything off screen or in a hidden tab
     var layers = qsa('.flutter-layer');
     if ('IntersectionObserver' in window && layers.length) {
