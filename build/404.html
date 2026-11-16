@@ -19,7 +19,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Eileen Alexander Therapeutic Services">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#800000">
+<meta name="theme-color" content="#6f7e5a">
 
 <!-- JSON-LD Schema -->
 <script type="application/ld+json">
@@ -98,58 +98,60 @@
 <link rel="icon" href="images/favicon.png" type="image/png" sizes="16x16">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&amp;family=Marcellus&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-root="">
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="404.html#main">Skip to content</a>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="./" aria-label="Eileen Alexander Therapeutic Services, home">
-      <img src="images/logoRGB.png" alt="Eileen Alexander Therapeutic Services" width="414" height="74">
-    </a>
+    <a class="brand" href="./" aria-label="Eileen Alexander Therapeutic Services, home"><img src="images/logoRGB.png" alt="Eileen Alexander Therapeutic Services" width="414" height="74"></a>
     <nav id="main-nav" class="main-nav" aria-label="Main">
       <ul>
+        <li><a class="nav-link" href="./">HOME</a></li>
         <li><a class="nav-link" href="about/">ABOUT</a></li>
-        <li class="has-sub">
-          <a class="nav-link" href="services/">SERVICES</a>
-          <button type="button" class="sub-toggle" aria-expanded="false" aria-controls="sub-services" aria-label="Show service pages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>
-          <div class="sub-menu" id="sub-services"><div><a href="services/reiki/">REIKI SESSIONS</a><a href="services/coaching/">LIFE &amp; GRIEF COACHING</a><a href="services/chakra/">CHAKRA SESSIONS</a><a href="services/yoga-meditation/">YOGA &amp; MEDITATION</a><a href="services/">ALL SESSIONS &amp; PRICING</a></div></div>
-        </li>
+        <li><a class="nav-link" href="services/">SESSIONS</a></li>
         <li><a class="nav-link" href="training/">REIKI TRAINING</a></li>
-        <li><a class="nav-link" href="events/">EVENTS</a></li>
+        <li><a class="nav-link" href="services/chakra/">CHAKRA SERIES</a></li>
+        <li><a class="nav-link" href="events/#retreat">RETREAT</a></li>
         <li><a class="nav-link" href="contact/">CONTACT</a></li>
       </ul>
-      <div class="mobile-contact">
-        <a href="tel:+19736004030">Call or text (973) 600-4030</a>
-        <a href="mailto:info@eileenalexander.com">info@eileenalexander.com</a>
-      </div>
+      <a class="btn nav-cta" href="services/#book">BOOK A SESSION</a>
     </nav>
     <div class="nav-actions">
-      <a class="icon-btn cart-btn" href="cart/" data-cart-open aria-controls="cart-drawer" aria-expanded="false" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 12.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="cart-count" aria-hidden="true">0</span></a>
+      <a class="btn btn--sm nav-shop" href="services/#book">BOOK A SESSION</a>
+      <button type="button" class="icon-btn cart-btn" data-cart-open aria-expanded="false" aria-controls="cart-drawer" aria-label="Cart, 0 items"><svg class="ico" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M5 8h14l-1.200 12.100a1 1 0 0 1-1 .9H7.200a1 1 0 0 1-1-.9zM9 8V6.500a3 3 0 0 1 6 0V8"/></svg><span class="cart-count" aria-hidden="true">0</span></button>
       <button type="button" class="icon-btn menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu"><span class="bars" aria-hidden="true"><span></span><span></span><span></span></span></button>
     </div>
   </div>
 </header>
 <main id="main">
-<section class="hero hero--short" data-butterflies="3" data-butterflies-light>
+<section class="page-hero page-hero--text" data-flutter="3" data-flutter-zone="right" data-flutter-zone-sm="top">
   <div class="container">
-    <div class="hero-content">
-      <p class="kicker">PAGE NOT FOUND</p>
-      <h1>This page <em>flew away</em></h1>
-      <p class="hero-sub">Like a butterfly, it seems to have drifted off. Let&rsquo;s get you back on your path.</p>
-    </div>
+    <p class="kicker">PAGE NOT FOUND</p>
+    <h1>This page <em>flew away</em></h1>
+    <p class="page-hero__lead">Like a butterfly, it seems to have drifted off. Let&rsquo;s get you back on your path.</p>
   </div>
 </section>
-<section class="section section--ivory lost">
-  <div class="container container--narrow">
-    <p class="big" aria-hidden="true">404</p>
+
+<section class="section lost">
+  <div class="container lost__wrap">
+    <span class="perch perch--lost" data-bfly="plum" aria-hidden="true"></span>
+    <p class="lost__num" aria-hidden="true">404</p>
     <h2>Where would you <em>like to go?</em></h2>
-    <div class="btn-row note-strip"><a class="btn" href="./">HOME</a><a class="btn btn--outline" href="services/">SESSIONS &amp; PRICING</a><a class="btn btn--outline" href="contact/">CONTACT EILEEN</a></div>
+    <div class="btn-row"><a class="btn" href="./">HOME</a><a class="btn btn--outline" href="services/">SESSIONS &amp; PRICING</a><a class="btn btn--outline" href="contact/">CONTACT EILEEN</a></div>
   </div>
 </section>
 </main>
-<footer class="site-footer" data-butterflies="2" data-butterflies-light>
+<footer class="site-footer">
+  <svg class="footer__plant" aria-hidden="true" focusable="false" viewBox="0 0 200 300"><path d="M100 236C96 172 68 122 26 98c-6 52 22 106 74 138z" fill="#7f9a6b"/>
+    <path d="M100 236c6-72 36-124 78-152 6 56-24 112-78 152z" fill="#96ae7e"/>
+    <path d="M100 236C82 162 84 80 104 18c24 62 22 146-4 218z" fill="#6c8a5c"/>
+    <path d="M100 236c-20-32-54-48-88-46 16 32 50 48 88 46z" fill="#a9bd90"/>
+    <path d="M100 236c24-30 56-42 90-38-18 30-50 44-90 38z" fill="#87a271"/>
+    <path d="M100 236C92 180 66 132 30 104M100 236c10-62 36-110 74-144M100 236c-4-72 0-150 4-210M100 236c-24-22-52-38-82-44M100 236c26-20 54-32 84-36" fill="none" stroke="#f3efdf" stroke-width="1.600" stroke-linecap="round" opacity=".55"/>
+    <path d="M66 232h68l-9 60a9 9 0 0 1-9 8H84a9 9 0 0 1-9-8z" fill="#c7a17a"/>
+    <path d="M68 246h64M70 260h60M72 274h56" fill="none" stroke="#a9825c" stroke-width="2" stroke-linecap="round" opacity=".6"/></svg>
   <div class="container">
     <div class="footer-grid">
       <div>
@@ -158,42 +160,36 @@
         <p>Reiki, life and grief coaching, yoga and meditation in Saddle River, New Jersey. In-office and virtual sessions.</p>
       </div>
       <div>
-        <h2>Explore</h2>
+        <h2>BOOK &amp; BUY</h2>
         <ul class="footer-nav">
+          <li><a href="services/#book">INDIVIDUAL SESSIONS</a></li>
+          <li><a href="training/#enroll">REIKI 1 &amp; 2 TRAINING</a></li>
+          <li><a href="training/#enroll">REIKI MASTER TRAINING</a></li>
+          <li><a href="services/chakra/#book">PRIVATE CHAKRA SESSION SERIES</a></li>
+          <li><a href="events/#retreat">NEW JERSEY LAKEFRONT RETREAT</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>EXPLORE</h2>
+        <ul class="footer-nav">
+          <li><a href="./">HOME</a></li>
           <li><a href="about/">ABOUT EILEEN</a></li>
-          <li><a href="services/">SESSIONS &amp; PRICING</a></li>
+          <li><a href="services/">SESSIONS</a></li>
           <li><a href="training/">REIKI TRAINING</a></li>
           <li><a href="events/">EVENTS &amp; RETREATS</a></li>
           <li><a href="contact/">CONTACT</a></li>
         </ul>
       </div>
       <div>
-        <h2>Sessions</h2>
-        <ul class="footer-nav">
-          <li><a href="services/reiki/">REIKI SESSIONS</a></li>
-          <li><a href="services/coaching/">LIFE &amp; GRIEF COACHING</a></li>
-          <li><a href="services/chakra/">CHAKRA SESSIONS</a></li>
-          <li><a href="services/yoga-meditation/">YOGA &amp; MEDITATION</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Visit</h2>
-        <address>
-          The Center for Mind Body Balance<br>96 East Allendale Road<br>Saddle River, NJ 07458<br><br>
-          <a href="tel:+19736004030">Call or text (973) 600-4030</a><br>
-          <a href="mailto:info@eileenalexander.com">info@eileenalexander.com</a><br>
-          <a href="https://www.facebook.com/EileenAlexanderTherapeuticServices" target="_blank" rel="noopener">Facebook</a>
-        </address>
+        <h2>VISIT</h2>
+        <address>The Center for Mind Body Balance<br>96 East Allendale Road<br>Saddle River, NJ 07458<br><br><a href="tel:+19736004030">Call or text (973) 600-4030</a><br><a href="mailto:info@eileenalexander.com">info@eileenalexander.com</a><br><a href="https://www.facebook.com/EileenAlexanderTherapeuticServices" target="_blank" rel="noopener">Facebook</a></address>
       </div>
     </div>
   </div>
   <div class="footer-bar">
     <div class="container footer-bar__inner">
       <span>&copy; <span data-year>2026</span> Eileen Alexander Therapeutic Services. All rights reserved.</span>
-      <div class="footer-lws">
-        <span class="footer-credit">Powered by <a href="https://livewebstudios.com" target="_blank" rel="noopener">Live Web Studios</a></span>
-        <a href="https://livewebstudios.com" class="footer-badge" target="_blank" rel="noopener"><img src="images/verifiedsecured.png" alt="Verified &amp; Secured by Live Web Studios" width="150" height="37" loading="lazy"></a>
-      </div>
+      <div class="footer-lws"><span class="footer-credit">Powered by <a href="https://livewebstudios.com" target="_blank" rel="noopener">Live Web Studios</a></span><a href="https://livewebstudios.com" class="footer-badge" target="_blank" rel="noopener"><img src="images/verifiedsecured.png" alt="Verified &amp; Secured by Live Web Studios" width="150" height="37" loading="lazy"></a></div>
     </div>
   </div>
 </footer>
