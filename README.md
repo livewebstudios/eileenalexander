@@ -4,13 +4,13 @@ Eileen Alexander Therapeutic Services. Static HTML/CSS/vanilla JS rebuild of the
 
 Built by Live Web Studios, October 2026.
 
-> **Layout note (November 2026):** the site now lives in `build/` and Netlify publishes that folder
+> **Layout note (November 2026):** the site lives in `build/` and Netlify publishes that folder
 > (`publish = "build"` in `netlify.toml`). Every site path below is relative to `build/`.
 > `netlify.toml`, `package.json`, `netlify/functions/` and `tests/` stay at the repo root.
-> Planning docs and reference screenshots are in `docs/`.
+> Planning docs, reference screenshots and the page build tools are in `docs/`, which is
+> gitignored and never pushed (the repo is public).
 >
-> **Design review in progress:** `build/index.html` is a temporary landing page for Eileen that links
-> to three design ideas in `build/demos/`. The previous home page is kept as `build/home-v1.html`.
+> **Design (November 16, 2026):** Eileen chose Design 1, Garden Room. Every page is built in it.
 
 ---
 
@@ -30,8 +30,10 @@ cart/  checkout/  thank-you/   Commerce pages (noindex)
 contact/                       Contact form (Formspree) + FAQ
 404.html                       Sets a relative <base> from the URL depth so assets load at any depth
 
-css/style.css                  All styles. Tokens on :root. Reduced-motion kill switch at the bottom.
-js/main.js                     Nav, scroll reveals, butterflies, FAQ, testimonials, contact form
+css/style.css                  All styles. Part 1 plumbing (with the reduced-motion kill switch),
+                               Part 2 Garden Room tokens and home/about, Part 3 interior pages.
+js/main.js                     Butterfly species (window.EA_BFLY) + nav, reveals, chips, shop tabs,
+                               FAQ, testimonials, contact form, butterflies
 js/cart.js                     Cart state, product blocks, drawer, cart page, checkout, thank-you
 data/products.json             Single source of truth for products and prices (cents)
 netlify/functions/create-checkout-session.js   Stripe Checkout session (re-prices server side)
@@ -47,7 +49,7 @@ Every page carries its own header and footer (no JS injection). All internal pat
 Static preview (no card checkout):
 
 ```bash
-python3 -m http.server 8002
+python -m http.server 4173 --directory build
 ```
 
 Full preview with the function: `netlify dev` (Netlify CLI), which serves the site and `/.netlify/functions/*` on port 8888.
@@ -58,22 +60,38 @@ Function checks:
 npm install && npm test
 ```
 
-## Brand
+## Brand: Garden Room
 
-Colors pulled from the live site CSS and the logo PNG:
+Sage and cream, arches, rounded cards, potted plants. Tokens live on `:root` in `css/style.css`.
 
-| Token | Hex | Source |
+| Token | Hex | Use |
 |---|---|---|
-| `--burgundy` | `#800000` | live site headings/buttons, logo |
-| `--burgundy-deep` | `#7e1416` | logo "alexander" |
-| `--red` | `#c03030` | live accent color, logo "eileen", business card band |
-| `--rose` | `#e0b5b5` | live header band, business card |
-| `--rose-mid` | `#c18181` | logo "THERAPEUTIC SERVICES" (decorative use only, 3.1:1) |
-| `--ink` | `#5b4747` | live body copy color |
+| `--bg` | `#f8f4ea` | Page cream |
+| `--bg-2` | `#e0e2ce` | Sage band (`.band`, `.strip`) |
+| `--bg-3` | `#f1eadb` | Sand sections, heroes (`.section--alt`, `.page-hero`) |
+| `--surface` | `#fffdf8` | Cards, panels, fields |
+| `--ink` / `--ink-strong` / `--ink-2` | `#575c4a` / `#2e3226` / `#616454` | Body, headings, secondary text |
+| `--accent` / `--accent-dark` | `#5f6c4d` / `#4b5838` | Buttons, links, chips, h2 accents (deepened from `#6f7e5a` for AA contrast) |
+| `--sage` | `#6f7e5a` | Decorative sage, `theme-color` |
+| `--line` / `--line-strong` | `#e5ddc9` / `#cbc6ad` | 1px borders |
 
-Type: Playfair Display (headings) + Mulish (body), Google Fonts. Logo stays `images/logoRGB.png`; over the hero and in the footer it is turned white with a CSS filter, not a second file.
+Logo accents: `--brand` `#7e1416` (prices, H1 accent, header button, nav underline), `--brand-2` `#9c3a3c` (kickers), `--mauve` `#c18181` and `--mauve-soft`, `--blush` `#f8ebe8` (soft cards, quote blocks).
 
-Butterflies: inline SVG built by `js/main.js` from any element with `data-butterflies="n"` (`data-butterflies-light` for dark sections). Two wing groups flap with `scaleX`, the wrapper drifts. On content sections they only glide inside the top and bottom padding bands so they never pass over text. Desktop heroes get free drift on the right half. Max 5 per section, 2 on phones, paused when offscreen, off under `prefers-reduced-motion`.
+Type: Marcellus (headings) + Jost 300/400/500/600 (body), Google Fonts. Radii: `--r` 26px cards, `--r-sm` 12px rows and fields, `--r-btn` 10px buttons, `--r-chip` 10px chips; arches use `999px 999px 20px 20px`.
+
+Logo stays `images/logoRGB.png` in its own colors, always an `<img>`.
+
+## Butterflies
+
+The butterflies are the heart of this site (Eileen: "its like Niki is there on every page"). Every page has them, including cart, checkout, thank-you and 404.
+
+The species is `window.EA_BFLY` at the top of `js/main.js`: art for one right wing, a body and six colorways (`ruby`, `honey`, `coral`, `sage`, `sky`, `plum`). The engine mirrors the wing and flaps it in 3D.
+
+- `data-flutter="n"` on a section: n butterflies in flight (max 7, 2 on phones).
+- `data-flutter-zone="right | left | sides | top | bottom | full"`: where they may fly. `data-flutter-zone-sm` sets the zone on phones (default `top`).
+- `<span class="perch perch--NAME" data-bfly="colorway" aria-hidden="true"></span>`: a resting butterfly, placed by a `.perch--NAME` rule (or by its parent, for example `.panel > .perch`).
+
+Rules: flight in every page hero plus one to three more sections; perches on images and cards; never over body text; `pointer-events: none` and `aria-hidden="true"` always; vary colorways side by side. Flight pauses off screen and in hidden tabs. Under `prefers-reduced-motion` nothing moves and perches stay visible. The empty cart shows a still butterfly (`window.EA_BUTTERFLY_SVG`).
 
 ## Commerce
 
@@ -111,39 +129,26 @@ Netlify env vars:
 
 `checkout/` form posts to Formspree `mjygqpyl` with `form_type=offline-order`, `order_items` (one line per item, with options and line totals), `order_total`, `payment_method`, name, email, phone, notes. Subject line reads `New order (Zelle/Venmo/check) from NAME | $TOTAL`. The contact form uses the same endpoint with `form_type=contact`. Both have the `_gotcha` honeypot.
 
-## Image shot list (all current images are labeled placeholders)
+## Images
 
-Every placeholder has its filename, size and subject printed in the lower right corner. Replace each file at the same name and pixel size; JPG, quality ~82, max 1600px wide, strip metadata. Warm, soft, candid. No stock-corporate look. Brand-friendly tones (rose, cream, soft gold light).
+All current photos except the portrait are AI stand-ins (no people's faces). Replace each at the same filename with a real photo when Eileen has them: JPG, quality 82, max 1600px wide, metadata stripped. Rounded frames crop with `object-fit: cover`, so any size near the same shape works.
 
-| File | Size | Subject |
-|---|---|---|
-| `hero-home.jpg` | 1600x1000 | Soft morning light in a serene healing studio, hands hovering in Reiki. Darker left side for white headline |
-| `hero-about.jpg` | 1600x900 | Light through trees, golden hour, peaceful path |
-| `hero-services.jpg` | 1600x900 | Treatment room: massage table, candles, soft linens |
-| `hero-reiki.jpg` | 1600x900 | Close-up of hands above a resting client, warm glow |
-| `hero-coaching.jpg` | 1600x900 | Two chairs, tea and a journal by a sunny window |
-| `hero-chakra.jpg` | 1600x900 | Seven stones in rainbow order on linen |
-| `hero-yoga.jpg` | 1600x900 | Yoga mat, bolster, blanket, morning light |
-| `hero-training.jpg` | 1600x900 | Small circle of students, manuals, candles |
-| `hero-events.jpg` | 1600x900 | Lakefront retreat house at dawn, mist on the water |
-| `hero-contact.jpg` | 1600x900 | Butterfly on flowers, soft garden bokeh |
-| `eileen-portrait.jpg` | 900x1125 | Eileen, warm candid portrait, natural light (real photo of Eileen) |
-| `eileen-teaching.jpg` | 900x1125 | Eileen guiding a Reiki student (real photo of Eileen) |
-| `card-reiki.jpg` | 800x600 | Reiki session, hands and soft light |
-| `card-coaching.jpg` | 800x600 | Journal, pen and tea on a cozy table |
-| `card-chakra.jpg` | 800x600 | Chakra stones and crystals |
-| `card-yoga.jpg` | 800x600 | Restorative yoga props, bolster and blanket |
-| `card-meditation.jpg` | 800x600 | Meditation cushion and singing bowl |
-| `card-training.jpg` | 800x600 | Reiki manual, certificate, candle |
-| `card-clearing.jpg` | 800x600 | Sage bundle, open window, sheer curtain |
-| `card-circle.jpg` | 800x600 | Memorial garden stones and flowers |
-| `card-retreat.jpg` | 800x600 | Retreat circle outdoors, women on mats |
-| `retreat-feature.jpg` | 1600x1000 | Lakefront retreat, canoe, morning light (white card overlaps the right half) |
-| `cta-closing.jpg` | 1600x1000 | Butterfly in light through trees (white card overlaps the left half) |
+| File | Size | Subject | Status |
+|---|---|---|---|
+| `eileen-portrait.jpg` | 405x463 | Eileen smiling, colorful tapestry behind her | **Real photo** (small; display capped, see open items) |
+| `hero.jpg` | 1600x1195 | Sunlit healing studio, treatment table, arched niches, plants | Stand-in |
+| `reiki.jpg` | 1000x1000 | Hands hovering above a clothed client | Stand-in |
+| `coaching.jpg` | 1000x1000 | Two linen armchairs, tea and notebook by a window | Stand-in |
+| `grief.jpg` | 1000x1000 | Candle, white flowers and a journal | Stand-in |
+| `yoga.jpg` | 1000x1000 | Sage yoga mat, bolster, blanket | Stand-in |
+| `meditation.jpg` | 1000x1000 | Meditation cushion and singing bowl | Stand-in |
+| `chakra.jpg` | 1000x1000 | Seven crystals in rainbow order on linen | Stand-in |
+| `training.jpg` | 1000x1000 | Training workbook, certificate, candle | Stand-in |
+| `circle.jpg` | 1000x1000 | Floor cushions in a circle around candles | Stand-in |
+| `retreat.jpg` | 1000x1000 | Yoga mats on a dock by a misty lake | Stand-in |
+| `butterfly.jpg` | 1400x930 | Butterfly on white garden flowers | Stand-in |
 
-Already final: `logoRGB.png` (414x74 from the live site), `favicon.png` (16x16), `favicon.svg` (butterfly), `og-image.jpg` (1200x630, logo on cream; a vector logo would make it crisper), `acep-member.jpg`, `quantum-success.jpg`, `verifiedsecured.png`.
-
-Hero images sit under a burgundy gradient overlay. After swapping finals, re-check that the rose italic in each H1 still reads clearly.
+Already final: `logoRGB.png` (414x74), `favicon.png`, `favicon.svg` (butterfly), `og-image.jpg` (1200x630), `acep-member.jpg`, `quantum-success.jpg`, `verifiedsecured.png`.
 
 ## Redirects
 
@@ -158,6 +163,10 @@ Hero images sit under a burgundy gradient overlay. After swapping finals, re-che
 
 ## Open items (owner: Jon)
 
+- [ ] **Portrait resolution.** 405 x 463. Ask Eileen for the original, full-size file. Swap it in at the same filename when it arrives and lift the size caps (`.arch-portrait--sm` and `.about__media--portrait` in `css/style.css`).
+- [ ] **Stand-in photos.** The 11 Garden Room images are AI stand-ins. Real studio photos replace them when Eileen has them.
+- [ ] **Reiki Master date goes stale after December 6, 2026.** After that day: remove the `schedule` from the Group Training variant in `products.json`, the "NEXT GROUP" kicker on the home and training shop panels, the "Dec 6" chip label (home and training), the calendar card on home, the "NEXT: DEC 6, 2026" link on the training Master card, the December event block on events, and the `Event` schema on events.
+- [ ] **Three original designs** live at git tag `design-ideas-v1` and as a reusable kit in `local_project/templates/wellness-three-designs/` (see its `TEMPLATE-README.md`).
 - [ ] **Stripe keys.** Sandbox key tested locally 2026-10-22 (`build/.env`, gitignored, loaded by `_dev/devserver.js`): all 22 option combos create sessions, a full 4242 payment lands on thank-you with the cart cleared, cancel returns with the cart kept, bad options and client-sent prices are rejected. Still to do: promo code test (none created yet), add the key to Netlify env at deploy, and swap to live once Eileen finishes Stripe activation (business details, bank, SSN last 4). Turn on Stripe receipt emails, since the thank-you page promises one.
 - [x] **Prices.** Eileen confirmed every price 2026-10-23: sessions $120 / $315 / $975, Reiki 1 $230 group / $330 private, Reiki 2 $280 / $380, Reiki Master $560 / $660. All match `products.json`.
 - [x] **Check mailing address.** Eileen changed it 2026-10-22: checks go to her home, 15 Jennifer Court, Clifton, NJ 07013. Printed only on the thank-you page check card (page is noindex). Everything else uses the Saddle River office.
@@ -168,13 +177,12 @@ Hero images sit under a burgundy gradient overlay. After swapping finals, re-che
 - [x] **Facebook.** Business page in the footer and schema `sameAs`: https://www.facebook.com/EileenAlexanderTherapeuticServices. She posts mostly on her personal page (https://www.facebook.com/EileenAlexanderLifeCoachAndReikiMaster) and asked about linking both; not added yet.
 - [ ] **3% card fee.** Eileen asked to add 3% to card payments. Stripe has no switch for it; it would be a line item in our checkout function. Card-network rules bar surcharging debit cards and require up-front disclosure, so raising prices may be simpler. Decide with Eileen.
 - [ ] **Stripe bank account.** Eileen finished most of activation but could not find where to add her bank, and was unsure which payment methods to enable. She added Jon as an Administrator (invite email 2026-10-23).
-- [ ] **Final images** per the shot list.
 - [ ] **GA4 ID** and Google Search Console verification + sitemap submit.
 - [ ] **Real-device pass** on iPhone Safari and Android Chrome.
 
 ## Launch checklist
 
-1. Netlify: connect repo, publish dir `.`, no build command needed (the toml echoes one). Functions are picked up from `netlify/functions`.
+1. Netlify: connect repo, publish dir `build`, no build command needed (the toml echoes one). Functions are picked up from `netlify/functions`.
 2. Set `STRIPE_SECRET_KEY` (live) in Site settings > Environment variables.
 3. Point DNS, enable HTTPS.
 4. Uncomment GA4 with the real ID.

@@ -17,3 +17,6 @@ $RECYCLE.BIN/
 node_modules/
 .netlify/
 .env
+
+# Reference docs, planning notes and build tools: never deployed, never pushed
+docs/
