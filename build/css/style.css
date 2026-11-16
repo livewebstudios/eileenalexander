@@ -522,6 +522,7 @@ h1 em, h2 em { font-style: normal; color: var(--accent); }
 .split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(32px, 6vw, 84px); align-items: center; }
 .split--rev > :first-child { order: 2; }
 .split--top { align-items: start; }
+.split--gap { margin-top: clamp(36px, 5vw, 64px); }
 .media-blob { position: relative; width: 100%; max-width: 470px; justify-self: center; }
 .media-blob .perch { right: 4%; top: 2%; --s: 92px; transform: rotate(18deg); }
 .media-blob .perch--lo { right: auto; left: 2%; top: auto; bottom: 8%; --s: 70px; transform: rotate(-24deg); }
