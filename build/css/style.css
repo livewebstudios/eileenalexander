@@ -515,6 +515,8 @@ h1 em, h2 em { font-style: normal; color: var(--accent); }
 /* Home portrait: small source photo, so the blob is capped and centered */
 .about__media--portrait { width: 100%; max-width: 380px; justify-self: center; }
 .about__media--portrait .ph img { object-position: 50% 24%; }
+.about__media--portrait .blob__plant { left: -8%; bottom: -6%; width: 34%; height: 52%; transform: none; }
+.about__media--portrait .perch--about { right: -6%; top: 2%; }
 
 /* Two-column text + picture, used across the interior pages */
 .split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(32px, 6vw, 84px); align-items: center; }
