@@ -135,7 +135,7 @@ All current photos except the portrait are AI stand-ins (no people's faces). Rep
 
 | File | Size | Subject | Status |
 |---|---|---|---|
-| `eileen-portrait.jpg` | 405x463 | Eileen smiling, colorful tapestry behind her | **Real photo** (small; display capped, see open items) |
+| `eileen-portrait.jpg` | 600x800 | Eileen smiling, soft sand-to-sage backdrop | **Real photo** (Nov 15 original; tapestry swapped for a plain backdrop 2026-11-23, untouched original in `docs/`) |
 | `hero.jpg` | 1600x1195 | Sunlit healing studio, treatment table, arched niches, plants | Stand-in |
 | `reiki.jpg` | 1000x1000 | Hands hovering above a clothed client | Stand-in |
 | `coaching.jpg` | 1000x1000 | Two linen armchairs, tea and notebook by a window | Stand-in |
@@ -163,7 +163,7 @@ Already final: `logoRGB.png` (414x74), `favicon.png`, `favicon.svg` (butterfly),
 
 ## Open items (owner: Jon)
 
-- [ ] **Portrait resolution.** 405 x 463. Ask Eileen for the original, full-size file. Swap it in at the same filename when it arrives and lift the size caps (`.arch-portrait--sm` and `.about__media--portrait` in `css/style.css`).
+- [x] **Portrait resolution.** Her 600x800 original arrived Nov 15 and is live (2026-11-23) on a soft backdrop. Caps lifted to 380px (About arch) and 420px (home blob). A larger original would still help on retina screens.
 - [ ] **Stand-in photos.** The 11 Garden Room images are AI stand-ins. Real studio photos replace them when Eileen has them.
 - [ ] **Reiki Master date goes stale after December 6, 2026.** After that day: remove the `schedule` from the Group Training variant in `products.json`, the "NEXT GROUP" kicker on the home and training shop panels, the "Dec 6" chip label (home and training), the calendar card on home, the "NEXT: DEC 6, 2026" link on the training Master card, the December event block on events, and the `Event` schema on events.
 - [ ] **Three original designs** live at git tag `design-ideas-v1` and as a reusable kit in `local_project/templates/wellness-three-designs/` (see its `TEMPLATE-README.md`).
