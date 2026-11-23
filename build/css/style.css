@@ -507,7 +507,7 @@ h1 em, h2 em { font-style: normal; color: var(--accent); }
 .page-hero .btn-row { margin-top: 26px; }
 .page-hero__lead { font-size: 1.12rem; max-width: 34em; }
 .arch-portrait .ph img { object-position: 50% 40%; }
-.arch-portrait--sm { width: min(100%, 340px); }
+.arch-portrait--sm { width: min(100%, 380px); }
 .arch-portrait--sm .ph img { object-position: 50% 22%; }
 .page-hero--text { padding: clamp(48px, 7vw, 92px) 0 clamp(40px, 6vw, 72px); }
 .page-hero--text .container { max-width: 760px; text-align: center; }
@@ -515,7 +515,7 @@ h1 em, h2 em { font-style: normal; color: var(--accent); }
 .page-hero--text p:last-child { margin-bottom: 0; }
 
 /* Home portrait: small source photo, so the blob is capped and centered */
-.about__media--portrait { width: 100%; max-width: 380px; justify-self: center; }
+.about__media--portrait { width: 100%; max-width: 420px; justify-self: center; }
 .about__media--portrait .ph img { object-position: 50% 24%; }
 .about__media--portrait .blob__plant { left: -8%; bottom: -6%; width: 34%; height: 52%; transform: none; }
 .about__media--portrait .perch--about { right: -6%; top: 2%; }
