@@ -639,6 +639,10 @@ h1 em, h2 em { font-style: normal; color: var(--accent); }
 .pay-card #pay-card-btn { margin-top: auto; }
 .pay-card .cart-fine { margin-top: 12px; color: var(--ink-2); }
 .pay-card .notice { margin: 14px 0 0; }
+.pay-handles { margin: 0 0 22px; padding: 14px 18px; border-radius: var(--r-sm); background: var(--bg-3); border: 1px solid var(--line); display: grid; gap: 6px; }
+.pay-handles li { font-size: 0.95rem; color: var(--ink); }
+.pay-handles strong { color: var(--ink-strong); font-weight: 600; }
+.pay-handles .handle { font-weight: 500; color: var(--ink-strong); white-space: nowrap; }
 .checkout-empty { max-width: 640px; margin: 0 auto; text-align: center; }
 
 /* Thank-you */
